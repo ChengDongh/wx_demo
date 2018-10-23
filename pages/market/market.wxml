@@ -1,0 +1,47 @@
+<!--pages/market/market.wxml-->
+<view class='search'>
+  <view class='search-container'>
+    <icon type='search' size='20'></icon>
+    <input type='text' bindconfirm='hotSearcht' placeholder-style='font-size: 30rpx; color: #999;' placeholder='搜索'></input>
+  </view>
+</view>
+<view class='hotSearch' wx:if="{{hotSearch && hotSearch.length>0}}">
+  <scroll-view scroll-x="true" scroll-left="0">
+    <view wx:for="{{hotSearch}}" class="{{category_id==item.id?'activeh':''}}" wx:key='{{item}}' data-key='{{item}}' bindtap='hotSearch'>{{item.title}}</view>
+  </scroll-view>
+</view>
+<view>
+  <swiper wx:if="{{banners && banners.length>0}}" autoplay indicator-dots indicator-color="white" circular class="swiper" indicator-active-colo="#FFFFFF">
+    <block wx:for="{{banners}}" wx:key="{{item}}">
+      <swiper-item>
+        <navigator url="/pages/product/product?id={{item.target_id}}" hover-class="navigator-hover">
+          <image mode="aspectFill" src="{{ item.pic }}"></image>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class='product_list'>
+  <view class='product_item' wx:for="{{products}}" wx:key="{{item.id}}">
+    <navigator url='/pages/product/product?id={{item.id}}' open-type='navigate'>
+      <view class="product_img">
+        <image mode="widthFix" src="{{item.image}}"></image>
+      </view>
+      <view class="product_info">
+        <view class="product_name">
+          <text class="product_title ">{{item.title}}</text>
+        </view>
+        <view class='product_spec'>
+          <text class=''>{{item.spec}}</text>
+        </view>
+        <view class="product_money">
+          <view>
+            <image src="../resource/image/timepri.png" class='timepri'></image>
+          </view>
+          <text class="kredcolor">￥{{item.price}}</text>
+          <text class="pre">¥{{item.pre_price}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>

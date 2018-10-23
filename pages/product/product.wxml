@@ -1,0 +1,166 @@
+<!--pages/product/product.wxml-->
+<view>
+  <view>
+    <swiper indicator-dots class='swiper' current='{{current}}'>
+      <swiper-item wx:for="{{images_0}}" wx:for-item="item" wx:key="{{index}}" wx:for-index="index">
+        <image class='slider_img' mode='aspectFill' src="{{item.image}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class='product_name'>
+    <view class='product_title'>
+      <text selectable>{{product.title}}</text>
+    </view>
+    <view class='product_kj'>
+      <button open-type="share" plain>
+        <image src='/pages/resource/image/kanjia(1).png'></image>
+      </button>
+    </view>
+  </view>
+  <view class='product_price'>
+    <text class='product_price_label'>￥{{product.price}}</text>
+    <text class='propose_price_label'>￥{{product.pre_price}}</text>
+  </view>
+  <view class='product_freight'>
+    <text>运费：免运费</text>
+    <text>剩余：{{product.num}}</text>
+    <text>销量：{{product.nownumber}}</text>
+  </view>
+  <view class='product-icon' bindtap='shopcover'>
+    <view>
+      <icon type='success' size="24" color=''></icon>
+      <text>企业认证</text>
+    </view>
+    <view>
+      <icon type='success' size='24' color=''></icon>
+      <text>店铺认证</text>
+    </view>
+    <view>
+      <icon type='success' size='24' color=''></icon>
+      <text>担保交易</text>
+    </view>
+  </view>
+  <view class='product-page'>
+    <view class='product-page-title'>
+      <text data-index="0" class="{{pagesshow == 0?'page-active':''}}" bindtap='pagechange'>商品详情</text>
+      <text data-index="1" class="{{pagesshow == 0?'':'page-active'}}" bindtap='pagechange'>商品评价</text>
+    </view>
+    <view wx:if="{{pagesshow == 0}}" class='page1'>
+      <image wx:for="{{images}}" wx:key="{{index}}" src="{{item}}" mode="widthFix"></image>
+    </view>
+    <view wx:if="{{pagesshow == 1}}" class='page2'>
+      <view wx:for="{{productAppraise}}" wx:key="{{index}}">
+        <view>
+          <view class='messhead'>
+            <image src="{{item.user.headimgurl}}" class='headimg'></image>
+            <text class='messname'>{{item.user.nackname}}</text>
+          </view>
+          <view class='messbody'>
+            <text class='messtime'>{{item.create_time}}</text>
+            <text class='messparam1'>{{item.param1}}</text>
+            <text class='messparam2'>{{item.param2}}</text>
+          </view>
+          <view class='messcont'>
+            <text>{{item.appraise_desc}}</text>
+          </view>
+          <view class='messimg'>
+            <image wx:for="{{item.appraise_images}}" wx:key="{{index}}" src="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="footer"></view>
+  <view class="product-op">
+    <view class="product-btn">
+      <view bindtap='gomarket'>
+        <image src='/pages/resource/image/gomarket.png'></image>
+        <text>主页</text>
+      </view>
+      <button open-type='share' plain>
+        <image src='/pages/resource/image/share.png'></image>
+        <text>分享</text>
+      </button>
+      <view bindtap='collection'>
+        <image src="/pages/resource/image/Collection1.png"></image>
+        <text>收藏</text>
+      </view>
+    </view>
+    <view class='product-btn2'>
+      <button class='product-buy' data-index='0' data-btn='加入购物车' bindtap='buyProduct'>加入购物车</button>
+      <button class='product-share' data-index='0' data-btn='下一步' bindtap='buyProduct'>立即购买</button>
+    </view>
+  </view>
+  <view class='shopcover' wx:if="{{showcover}}">
+    <view class="shoplist {{showcover?'shoplista':''}}">
+      <view>
+        <icon size='15' type='success'></icon>
+        <view class='shoptext'>
+          <text>企业认证</text>
+          <text>该店铺已通过认证</text>
+        </view>
+      </view>
+      <view>
+        <icon size='15' type='success'></icon>
+        <view class='shoptext'>
+          <text>店铺认证</text>
+          <text>该店铺已通过认证</text>
+        </view>
+      </view>
+      <view>
+        <icon size='15' type='success'></icon>
+        <view class='shoptext'>
+          <text>担保交易模式</text>
+          <text>商家发货后7天或买家确定收货后，支付金额结算到商家</text>
+        </view>
+      </view>
+      <view class='closeshopcover'>
+        <button plain bindtap='shopcover'>我知道了</button>
+      </view>
+    </view>
+  </view>
+  <view class='mask' wx:if="{{show==0}}">
+    <view class='cartbox'>
+      <!-- <view class="mask" bindtap="shopCarCancel"></view>  -->
+      <view class='cart'>
+        <view class="cart_product">
+          <image class="cart_product_img" src="{{product.param1s[skuindex1].image}}"></image>
+          <view class="cart_product_info">
+            <view class="cart_product_title">{{product.title}}</view>
+            <!-- <view wx:if="{{product.limit_amount > 0}}" class="cart_product_limit">每单限购：{{product.limit_amount}}件</view> -->
+            <view class='unitPrice'> ￥{{sku[skuindex].price}}</view>
+          </view>
+          <view>
+            <icon type='cancel' size='25' color='#999999' bindtap='buyProduct' data-index='1' data-btn="" class='closecart'></icon>
+          </view>
+        </view>
+      </view>
+      <view class='classify'>
+        <view>
+          <text wx:if="{{product.param1!=''}}">{{product.param1}}:</text>
+          <view class='skulist'>
+            <button class="{{skuindex1==index&&item.disabled==1?'active':''}}" disabled='{{item.disabled==0}}' bindtap='changeparam1' data-index="{{index}}" wx:key="{{index}}" wx:for="{{product.param1s}}">{{item.title}}</button>
+          </view>
+        </view>
+        <view>
+          <text wx:if="{{product.param2!=''}}">{{product.param2}}:</text>
+          <view class='skulist'>
+            <button class="{{skuindex2==index&&item.disabled==1?'active':''}}" disabled='{{item.disabled==0}}' bindtap='changeparam2' data-index="{{index}}" wx:key="{{index}}" wx:for="{{product.param2s}}">{{item.title}}</button>
+          </view>
+        </view>
+      </view>
+      <view class='buy'>
+        <view class='buy_title'>
+          <text>购买数量:</text>
+          <text>剩余{{inventory}}件</text>
+        </view>
+        <view class='select-number'>
+          <button bindtap='minus' disabled='{{quantity<=1}}'>-</button>
+          <input type='number' value="{{quantity}}"></input>
+          <button bindtap='plus'>+</button>
+        </view>
+      </view>
+      <button class="cart_sures" bindtap="placeorder"> {{cartbtn}} </button>
+    </view>
+  </view>
+</view>
