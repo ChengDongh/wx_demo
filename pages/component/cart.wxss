@@ -1,0 +1,246 @@
+page{
+    /*height: 100%;*/
+}
+.container{
+    justify-content:initial;
+}
+.title-box{
+    width: 100%;
+    padding-top: 330rpx;
+    text-align: center;
+    font-size:28rpx;
+    color:#999;
+    /* background: url(http://image.aidaojiacdn.com/b31bb627514fe4e9c7441bf50da104c9_108x108.png) no-repeat center 205rpx; */
+    background-size: 100rpx auto;
+    margin-bottom: 50rpx;
+}
+.centers{
+  text-align: center;
+}
+.to-index-btn{
+    color:#fff;
+    background:#FC911D;
+    border-radius:6px;
+    width:300rpx;
+    height:70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    font-size:28rpx;
+    display: inline-block;
+}
+.list-top{
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:space-between;
+    font-size: 28rpx;
+    align-items: center;
+}
+.button{
+  border: none !important;
+}
+.list-top .label{
+    color: #000;
+}
+.list-top .edit-btn{
+    color: #999;
+    height: 100%;
+}
+.goodsList{
+    width: 100%;
+    background-color: white;
+    margin: 20rpx 0rpx;
+}
+.a-gooods{
+    width: 100%;
+    overflow: hidden;
+}
+.a-goods-conts{
+    display: flex;
+    justify-content:space-between;
+    padding-left: 30rpx;
+    width: 870rpx;
+    box-sizing: border-box;
+    transition: margin-left 0.2s ease-in-out;
+    background: url(https://cdn.it120.cc/images/weappshop/gou.png) no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.a-goods-conts.active{
+    background: url(http://cdn.qiqiangkeji.com/20180808.4ade15538530f7de7bf1fd281d9971f1_80x80.png) no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.goods-info{
+    display: flex;
+    justify-content:space-between;
+    width: 720rpx;
+    box-sizing: border-box;
+    background-color: #FAFAFA;
+    margin: 30rpx 0 30rpx 70rpx;
+}
+.goods-info .img-box{
+    width: 160rpx;
+    height:160rpx;
+    overflow: hidden;
+    margin-right: 20rpx;
+    background-color: #d8d8d8;
+}
+.goods-info .text-box{
+    width: 440rpx;
+    position: relative;
+}
+.goods-info .text-box .goods-title{
+    width:440rpx; 
+    position: relative;
+}
+
+.title-text{
+  font-size: 28rpx;
+  color:#1A1A1A;
+  display: inline-block;
+  width: 320rpx;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+}
+.buy-price{
+  height: 50rpx;
+  position: relative;
+}
+.price{
+  color: #FC911D;
+  font-size: 26rpx;
+  display: inline-block;
+  width: 110rpx;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.goods-info .text-box .goods-label{
+    font-size: 28rpx;
+    color:#1A1A1A;
+    height: 38rpx;
+    line-height: 38rpx;
+    margin: 0rpx 0 25rpx 0;
+    width: 320rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.goods-info .text-box .buy-num{
+    position: absolute;
+    right: 30rpx;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.goods-info .text-box .buy-num .jian-btn{
+    width: 81rpx;
+    height: 62rpx;
+    line-height: 62rpx;
+    padding: 0;
+    background: #FAFAFA;
+    overflow: hidden;
+    border-radius: 0;
+}
+.goods-info .text-box .buy-num button::after{
+  border-radius: 0;
+}
+.goods-info .text-box .buy-num .jian-btn.disabled{
+    background-color: #f5f5f9;
+    color: #ccc;
+}
+.goods-info .text-box .buy-num .jia-btn{
+    width: 81rpx;
+    height: 62rpx;
+    line-height: 62rpx;
+    padding: 0;
+    background: #FAFAFA;
+    overflow: hidden;
+    border-radius: 0;
+    color: #666666;
+}
+.goods-info .text-box .buy-num .jia-btn.disabled{
+    background-color: #f5f5f9;
+    color: #ccc;
+}
+.goods-info .text-box .buy-num input{
+    width: 82rpx;
+    height: 59rpx;
+    min-height: 48rpx;
+    text-align: center;
+    font-size: 24rpx;
+    border: 1rpx solid #ccc;
+    background: #fff;
+}
+
+.goods-info .img-box .img{
+    width: 160rpx;
+    height:160rpx;
+}
+
+.a-goods-conts .delete-btn{
+    width: 120rpx;
+    line-height: 220rpx;
+    text-align: center;
+    background:#FC911D;
+    font-size: 24rpx;
+    color: #fff;
+}
+.jiesuan-box{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-bottom:1px solid #eee; 
+    border-top:1px solid #eee; 
+    background-color: #fff;
+    z-index: 999;
+}
+.jiesuan-box .to-pay-btn{
+    width:240rpx;
+    text-align: center;
+    line-height: 100rpx;
+    background-color: #FC911D;
+    font-size:32rpx;
+    color:#ffffff;
+}
+.jiesuan-box .to-pay-btn.no-select{
+    background-color: #ccc;
+}
+
+.jiesuan-box  .left-price{
+    display: flex;
+    width: 510rpx;
+    justify-content: space-between;
+    line-height: 100rpx;
+    padding: 0 30rpx 0 0;
+    font-size:28rpx;
+    box-sizing: border-box;
+}
+.jiesuan-box .all-selected,.list-top .all-selected{
+    padding-left: 90rpx;
+    color:#666666;
+    background: url(https://cdn.it120.cc/images/weappshop/gou.png)  no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.jiesuan-box .all-selected.active,.list-top .all-selected.active{
+    background: url(http://cdn.qiqiangkeji.com/20180808.4ade15538530f7de7bf1fd281d9971f1_80x80.png)  no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.jiesuan-box .total{
+    color: #FC911D;
+}
+.shopbox{
+  padding-bottom: 100rpx;
+}

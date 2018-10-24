@@ -131,7 +131,7 @@
             <view class='unitPrice'> ￥{{sku[skuindex].price}}</view>
           </view>
           <view>
-            <icon type='cancel' size='25' color='#999999' bindtap='buyProduct' data-index='1' data-btn="" class='closecart'></icon>
+            <icon type='cancel' size='25' color='#999999' bindtap='closecart' data-index='1' data-btn="" class='closecart'></icon>
           </view>
         </view>
       </view>
@@ -157,7 +157,7 @@
         <view class='select-number'>
           <button bindtap='minus' disabled='{{quantity<=1}}'>-</button>
           <input type='number' value="{{quantity}}"></input>
-          <button bindtap='plus'>+</button>
+          <button bindtap='plus' disabled='{{quantity>=inventory}}'>+</button>
         </view>
       </view>
       <button class="cart_sures" bindtap="placeorder"> {{cartbtn}} </button>
