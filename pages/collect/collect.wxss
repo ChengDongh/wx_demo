@@ -1,0 +1,89 @@
+/* pages/collect/collect.wxss */
+.collect{
+  width: 100%;
+  overflow: hidden;
+}
+.no_collect {
+  font-size: 30rpx;
+  color: #666;
+  text-align: center;
+  margin-top: 150rpx;
+}
+
+.list_header {
+  background: white;
+  padding: 15rpx 0;
+}
+
+.list_header image {
+  width: 34rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+
+.collect_list {
+  width: 870rpx;
+  display: flex;
+  justify-content: space-between;
+  transition: margin-left 0.2s ease-in-out;
+}
+.list {
+  width: 720rpx;
+  padding-left: 30rpx;
+}
+.delete-btn {
+  width: 120rpx;
+  line-height: 270rpx;
+  text-align: center;
+  background: #fc911d;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.list_text {
+  font-size: 30rpx;
+  display: inline-block;
+  margin-left: 10rpx;
+}
+
+.list_content {
+  display: flex;
+}
+
+.list_content image {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 20rpx 0;
+}
+
+.list_content_right {
+  width: 70%;
+  padding: 0 30rpx;
+  margin: 20rpx 0;  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.list_title {
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: top;
+  margin-top: 5rpx;
+}
+
+.list_pci {
+  font-size: 28rpx;
+  color: #fc911d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list_pci_btn button {
+  font-size: 24rpx;
+  border-color: #fc911d;
+  color: #fc911d;
+  line-height: 47rpx;
+}

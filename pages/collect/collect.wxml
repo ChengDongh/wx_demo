@@ -1,0 +1,32 @@
+<!--pages/collect/collect.wxml-->
+<view class='collect' wx:if="{{collectList.length>0}}">
+  <view class='collect_list' wx:for="{{collectList}}" wx:key="{{index}}" data-index='{{index}}' style='{{item.left}}' bindtouchmove='touchM' bindtouchstart='touchS' bindtouchend='touchE'>
+    <view class='list'>
+      <view class='list_header'>
+        <image src='../resource/image/shop (2).png'></image>
+        <text class='list_text'>快乐商店</text>
+      </view>
+      <view class='list_content'>
+        <image src='{{item.image}}'></image>
+        <view class='list_content_right'>
+          <view class='list_title'>
+            <text>{{item.title}}</text>
+          </view>
+          <view class='list_pci'>
+            <text>￥{{item.price}}</text>
+            <view class='list_pci_btn'>
+              <button plain catchtap='' data-id="">立即下单</button>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class="delete-btn" data-index="{{index}}" catchtap="delItem">
+      删除
+    </view>
+  </view>
+</view>
+<view class='no_collect' wx:else>
+  您还没有收藏，选择喜欢的商品收藏吧~~
+</view>

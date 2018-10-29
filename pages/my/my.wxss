@@ -1,1 +1,48 @@
 /* pages/my/my.wxss */
+.header{
+  width: 100%;
+  height: 429rpx;
+  position: relative;
+}
+.header image{
+  width: 100%;
+  height: 100%;
+}
+.userInfo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+}
+.user_img{
+  width: 144rpx;
+  height: 144rpx;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+.my_list_right{
+  display: inline-block;
+  width: 17rpx;
+  height: 30rpx;
+}
+.my_list_img{
+  width: 84rpx;
+  height: 84rpx;
+  vertical-align: middle;
+  margin-right: 30rpx;
+}
+.list_text{
+  font-size: 30rpx;
+  color: #333333;
+}
+.my_list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:20rpx 30rpx;
+  background: white;
+  border-bottom: 1rpx solid #e6e6e6;
+}

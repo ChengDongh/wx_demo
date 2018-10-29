@@ -1,0 +1,86 @@
+/* pages/delivery/delivery.wxss */
+.delivery{
+  width: 100%;
+  overflow: hidden;
+}
+.delivery_box {
+  width: 870rpx;
+  display: flex;
+  justify-content: space-between;
+  transition: margin-left 0.2s ease-in-out;
+  margin-top:20rpx;
+}
+
+.list {
+  width: 740rpx;
+  padding: 30rpx 0 30rpx 20rpx;
+  display: flex;
+  font-size: 30rpx;
+  background: white;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.delete-btn {
+  width: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  background: #fc911d;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.list_header image {
+  width: 52rpx;
+  height: 74rpx;
+}
+
+.list_content {
+  margin-left: 20rpx;
+}
+
+.address_mobile {
+  display: inline-block;
+  margin-left: 50rpx;
+}
+
+.address_color {
+  color: #666;
+}
+
+.list_top {
+  position: relative;
+  top: -10rpx;
+}
+
+.list_bottom {
+  position: relative;
+  top: 10rpx;
+  font-size: 28rpx;
+}
+
+.add_address {
+  padding: 20rpx;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  align-items: center;
+}
+
+.add_address image:first-child {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+
+.add_address image:last-child {
+  width: 17rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+
+.add_address_text {
+  display: inline-block;
+  font-size: 30rpx;
+  margin-left: 40rpx;
+}

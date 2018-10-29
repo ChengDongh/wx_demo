@@ -1,0 +1,32 @@
+<!--pages/delivery/delivery.wxml-->
+<view class='delivery'>
+  <view class='delivery_box' wx:for="{{addressList}}" wx:key="{{item}}" bindtap="selectTap" bindtouchstart="touchS" style="{{item.left}}" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
+    <view class='list'>
+      <view class='list_header'>
+        <image src='../resource/image/edit.png'></image>
+      </view>
+      <view class='list_content'>
+        <view class='list_top'>
+          <text>{{item.name}}</text>
+          <text class='address_mobile'>{{item.mobile}}</text>
+        </view>
+        <view class='list_bottom'>
+          <text class='address_color'>{{item.province}}{{item.city}}{{item.area}}{{item.location}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="delete-btn" data-index="{{index}}" catchtap="delItem">
+      删除
+    </view>
+  </view>
+  <navigator url='/pages/address/address'>
+    <view class='add_address'>
+      <view>
+        <image src="../resource/image/add_idcard.png" mode="scaleToFill"></image>
+        <view class='add_address_text'>添加新地址</view>
+      </view>
+      <image src="../resource/image/icon_right_more.png"></image>
+    </view>
+  </navigator>
+
+</view>

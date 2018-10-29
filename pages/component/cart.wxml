@@ -27,9 +27,9 @@
                   <view class='buy-price'>
                     <text class="price">¥{{item.sku.price}}</text>
                     <view class="buy-num">
-                      <button type='default' class="jian-btn {{item.num==1? 'disabled' : ''}}" disabled="{{item.num==1}}" catchtap="jianBtnTap" data-index="{{index}}">-</button>
+                      <button type='default' class="jian-btn" catchtap="jianBtnTap" data-index="{{index}}" disabled="{{item.num==1?'disabled':''}}">-</button>
                       <input type="number" value="{{item.num}}" disabled/>
-                      <button type='default' class="jia-btn {{item.num==item.sku.inventoyr? 'disabled' : ''}}" disabled="{{item.num==item.sku.inventoyr}}" catchtap="jiaBtnTap" data-index="{{index}}">+</button>
+                      <button type='default' class="jia-btn" catchtap="jiaBtnTap" data-index="{{index}}">+</button>
                     </view>
                   </view>
                 </view>
@@ -47,7 +47,7 @@
   <view class="jiesuan-box">
     <view class="left-price">
       <view class="all-selected  {{allSelect?'active':''}}" bindtap="bindAllSelect">全选</view>
-      <view class="total" hidden="{{hidden}}">合计：¥{{totalPrice}}</view>
+      <view class="total" hidden="{{hidden}}">合计：¥{{allMoney}}</view>
     </view>
     <view class="to-pay-btn {{hidden ?'no-select' : ''}}" bindtap="branch">去结算</view>
   </view>

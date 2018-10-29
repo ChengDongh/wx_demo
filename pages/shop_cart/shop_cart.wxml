@@ -1,5 +1,5 @@
 <!--pages/shop_cart/shop_cart.wxml-->
 <import src="../component/cart.wxml"/>
 <view class='containers'>
-  <template is="{{list != '' ? 'cart-goods-list' : 'no-goods'}}" data="{{list}}"></template>  
+  <template is="{{list != '' ? 'cart-goods-list' : 'no-goods'}}" data="{{list,allSelect,hidden,allMoney}}"></template>  
 </view>

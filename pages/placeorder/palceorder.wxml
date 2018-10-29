@@ -1,0 +1,122 @@
+<!--pages/placeorder/palceorder.wxml-->
+<view class='kbgcolor'>
+  <view class='colorline'>
+    <image src='../resource/image/colorline.png'></image>
+  </view>
+  <view class='addressInfo' wx:if="{{!addressInfo}}">
+    <view class='address_text'>
+      <text>收件人</text>
+      <input value='{{currentExpress.name}}' type='text' data-index='name' bindinput='addinfor' placeholder='请输入收件人的真实姓名'></input>
+    </view>
+    <view class='address_text'>
+      <text>手机号码</text>
+      <input value='{{currentExpress.mobile}}' type='text' data-index='mobile' bindinput='addinfor' placeholder='请输入11位手机号码'></input>
+    </view>
+    <view class='address_text'>
+      <text>地区选择</text>
+      <label bindtap='selectCity'>{{(currentExpress.province +currentExpress.city +currentExpress.area)?currentExpress.province + " " + currentExpress.city + " " + currentExpress.area : "请选择地区"}}</label>
+    </view>
+    <view class='address_text'>
+      <text>详细地址</text>
+      <input value='{{currentExpress.location}}' type='text' data-index='location' bindinput='addinfor' placeholder='街道门牌信息'></input>
+    </view>
+    <view class='saveAddress'>
+      <button bindtap='saveAddress'>保存收货信息</button>
+    </view>
+  </view>
+  <view class='addressInfos' wx:if="{{addressInfo}}">
+    <navigator url="/pages/delivery/delivery" hover-class="navigator-hover">
+      <view class='addressInfo_one'>
+        <view class='add_info_content'>
+          <view class='add_info_top'>
+            <image src='../resource/image/recive.png'></image>
+            <view class='add_info_text'>
+              <text>收件人:{{currentExpress.name}}</text>
+              <text class='text_two'>收货地址:{{currentExpress.province}}{{currentExpress.city}}{{currentExpress.area}}{{currentExpress.location}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <image class='order-right-icon' src='../resource/image/icon_right_more.png'></image>
+    </navigator>
+
+  </view>
+  <view class='cart_product' wx:for="{{product}}" wx:key="{{index}}">
+    <view class='cart_product_name'>
+      <image class='cart_product_img' src='{{item.image}}'></image>
+      <view class='products_info'>
+        <view class='cart_product_content'>
+          <text class='cart_product_content_one'>{{item.title}}</text>
+          <text class='cart_product_content_two'>￥{{item.sku.price}}</text>
+        </view>
+        <view class='cart_product_info'>
+          <text>{{item.sku.param1}}{{item.sku.param2}}</text>
+          <text>x{{item.num}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='word_color'>
+    <view class='leave_word'>
+      <view class='word_text'>
+        <text class='word_text_one'>留言</text>
+        <textarea class='word_text_two' bindinput="message" auto-height="true" placeholder='点击给商家留言'></textarea>
+      </view>
+      <view class='all_m'>
+        <text>合计</text>
+        <text class='all_pic' style=''>￥{{total}}</text>
+      </view>
+    </view>
+    <view class='leave_word'>
+      <view class='favourable'>
+        <text>优惠</text>
+        <view>
+          <text class='choose'>未选择</text>
+          <image class='choose-icon' src='../resource/image/icon_right_more.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='leave_word'>
+      <view class='all_contents'>
+        <view class='all_content'>
+          <text>商品金额</text>
+          <text class='all_content_text' style=''>￥{{total}}</text>
+        </view>
+        <view class='all_content'>
+          <text>优惠</text>
+          <text class='all_content_text' style=''>无</text>
+        </view>
+        <view class='all_content'>
+          <text>运费</text>
+          <text class='all_content_text' style=''>￥0</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='payment'>
+    <view class='payment_pic'>
+      <text>合计</text>
+      <text class='all_pic' style=''>￥{{total}}</text>
+    </view>
+    <button bindtap='payment_btn' class='payment_btn'>微信支付</button>
+  </view>
+  <view wx:if="{{show}}" class='pick_model'></view>
+  <view wx:if="{{show}}" class='pick_bottom'>
+    <view class='savePicker'>
+      <label class="savePicker-left-button" bindtap="selectCity">取消</label>
+      <label class="savePicker-right-button" bindtap="saveCity">确定</label>
+    </view>
+    <picker-view indicator-style="height: 40rpx;" style="width: 100%; height: 500rpx;" value="{{index}}" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{provinces}}" style="line-height: 40rpx;">{{item.provinces}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{citys}}" style="line-height: 40rpx;">{{item.citys}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{districts}}" style="line-height: 40rpx;">{{item.districts}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

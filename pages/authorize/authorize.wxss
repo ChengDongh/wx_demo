@@ -1,0 +1,30 @@
+/* pages/authorize/authorize.wxss */
+.header{
+  width: 100%;
+  height: 429rpx;
+  position: relative;
+}
+.header image{
+  width: 100%;
+  height: 100%;
+}
+.userInfo{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+}
+.user_img{
+  width: 144rpx;
+  height: 144rpx;
+  display: block;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+}
+.authorize_text{
+  font-size: 30rpx;
+  text-align: center;
+  padding: 20rpx 0;
+}

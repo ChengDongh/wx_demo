@@ -1,0 +1,29 @@
+/* pages/orderList/orderList.wxss */
+.nav_bar{
+  display: flex;
+  height: 88rpx;
+  background: white;
+  line-height: 88rpx;
+  padding: 0 22rpx 0 0;
+  border-bottom: 1rpx solid #ccc;
+}
+.bar{
+  width: 20%;
+  font-size: 28rpx;
+  color: #666666;
+  text-align: center
+}
+.bar_color{
+  color:#FC911D;
+}
+.bar_color text{
+  display: inline-block;
+  height: 86rpx;
+  border-bottom: 1rpx solid #FC911D;
+}
+.title-box{
+  font-size: 32rpx;
+  color: #ccc;
+  text-align: center;
+  margin-top: 100rpx;
+}

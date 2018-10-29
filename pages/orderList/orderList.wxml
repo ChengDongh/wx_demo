@@ -1,0 +1,11 @@
+<!--pages/orderList/orderList.wxml-->
+<view>
+  <view class='nav_bar'>
+    <view wx:for="{{orders}}" wx:key="{{id}}" data-id='{{item.id}}' class="bar {{item.bar_color}}" bindtap='selectBar'>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+  <view class="title-box" wx:if="{{currentOrder.orders.length==0}}">
+    空空如也～
+  </view>
+</view>

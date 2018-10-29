@@ -181,11 +181,10 @@ Page({
       cartinfo.num = this.data.quantity;
       cartinfo.title = this.data.product.title;
       cartinfo.productId = this.data.productId;
-      console.log(cartinfo.sku.id)
+      cartinfo.active = true;
       if (carStorage) {
         let a = 1;
         for (let i of carStorage) {
-          console.log(i.sku.id)
           if (i.sku.id == cartinfo.sku.id){
             a = 2;
             i.num = i.num + cartinfo.num;
@@ -223,15 +222,68 @@ Page({
           show: 1
         })
       }
-      console.log(wx.getStorageSync('cartinfo'))
+    }else{
+      let cartinfo = {};
+      cartinfo.image = this.data.product.param1s[this.data.skuindex1].image;
+      cartinfo.sku = this.data.sku[this.data.skuindex];
+      cartinfo.num = this.data.quantity;
+      cartinfo.title = this.data.product.title;
+      cartinfo.productId = this.data.productId;
+      wx.setStorage({
+        key: 'orderInfo',
+        data: [cartinfo],
+        success:function(){
+          wx.navigateTo({
+            url: '/pages/placeorder/palceorder',
+          })
+        }
+      });
     }
   },
 
-  collection: function(e) {
-    wx.showToast({
-      title: '等待功能完善',
-      icon: 'none'
-    })
+  collection: function() {
+    var that = this;
+    var collectStorage = wx.getStorageSync('collectInfo');
+    var productId = that.data.productId;
+    var collectInfo = {};
+    collectInfo.productId = that.data.productId;
+    collectInfo.title = that.data.product.title;
+    collectInfo.price = that.data.product.price;
+    collectInfo.image = that.data.product.param1s[0].image;
+    if (collectStorage){
+      var collect_num = 0;
+      for (let list of collectStorage){
+        if(list.productId == productId){
+          collect_num = 1;
+          wx.showToast({
+            title: '已收藏过了',
+            icon:'none'
+          })
+        }
+      }
+      if (collect_num == 0){
+        collectStorage.push(collectInfo);
+        wx.setStorage({
+          key: 'collectInfo',
+          data: collectStorage,
+          success:function(){
+            wx.showToast({
+              title: '收藏成功',
+            })
+          }
+        })
+      }
+    }else{
+      wx.setStorage({
+        key: 'collectInfo',
+        data: [collectInfo],
+        success:function(){
+          wx.showToast({
+            title: '收藏成功',
+          })
+        }
+      })  
+    }
   },
 
   gomarket: function() {

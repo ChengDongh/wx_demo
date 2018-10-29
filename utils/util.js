@@ -14,7 +14,11 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
-module.exports = {
-  formatTime: formatTime
+function isphone(mobile) {
+  return /^1(3|4|5|7|8)\d{9}$/.test(mobile)
 }
+module.exports = {
+  formatTime: formatTime,
+  isphone: isphone,
+}
+
