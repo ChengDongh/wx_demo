@@ -1,1 +1,44 @@
 /* pages/feedback/feedback.wxss */
+.textarea{
+  padding: 20rpx 30rpx;
+  background: white;
+}
+.textarea textarea{
+  font-size: 30rpx;
+  height: 180rpx;
+  color: #666666;
+}
+.image_content{
+  padding: 20rpx;
+  background: white;
+}
+.image_header{
+  font-size: 32rpx;
+}
+.upload image{
+  width: 150rpx;
+  height: 150rpx;
+}
+.image_list{
+  display: flex;
+  flex-wrap: wrap;
+}
+.image{
+  position: relative;
+}
+.image image{
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+}
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30rpx;
+}
+.cancelicon{
+  position: absolute;
+  top: -20rpx;
+  right: -6rpx;
+  z-index: 999;
+}

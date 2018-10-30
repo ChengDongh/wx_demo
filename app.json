@@ -1,17 +1,18 @@
 {
   "pages": [
+    "pages/orderList/orderList",
     "pages/market/market",
+    "pages/feedback/feedback",
     "pages/delivery/delivery",
     "pages/address/address",
     "pages/my/my",
     "pages/shop_cart/shop_cart",
-    "pages/orderList/orderList",
+    
     "pages/product/product",
     "pages/placeorder/palceorder",
     "pages/authorize/authorize",
     "pages/collect/collect",
     "pages/coupon/coupon",
-    "pages/feedback/feedback",
     "pages/manage_address/manage_address"
   ],
   "window": {

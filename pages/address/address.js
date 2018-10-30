@@ -30,13 +30,21 @@ Page({
       id: 1,
       districts: '光山'
     }],
+    id: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    if (JSON.stringify(options)!= "{}"){
+      var currentExpress = wx.getStorageSync('addresssInfoALL')[options.id];
+      var id = options.id;
+      this.setData({
+        currentExpress,
+        id
+      })
+    }
   },
 
   /**
@@ -54,7 +62,6 @@ Page({
   },
   addinfor: function(e) {
     var currentExpress = this.data.currentExpress;
-    console.log(e)
     switch (e.currentTarget.dataset.index) {
       case 'name':
         currentExpress.name = e.detail.value
@@ -130,33 +137,53 @@ Page({
     } else {
       var currentExpress = this.data.currentExpress;
       var addresssStorage = wx.getStorageSync('addresssInfoALL')
-      if (addresssStorage) {
-        addresssStorage.push(currentExpress)
-        wx.setStorage({
-          key: 'addresssInfoALL',
-          data: addresssStorage,
-          success: function() {
-            wx.showToast({
-              title: '添加成功',
-            })
-            wx.navigateBack({
-              delta: 1
-            })
-          }
-        })
+      if (this.data.id != null) {
+        if (addresssStorage){
+          addresssStorage[this.data.id] = currentExpress;
+          wx.setStorage({
+            key: 'addresssInfoALL',
+            data: addresssStorage,
+            success:function(){
+              wx.showToast({
+                title: '修改成功',
+              })
+              setTimeout(function(){
+                wx.navigateBack({
+                  delta: 1
+                })
+              },1000)
+            }
+          })
+        }
       } else {
-        wx.setStorage({
-          key: 'addresssInfoALL',
-          data: [currentExpress],
-          success: function() {
-            wx.showToast({
-              title: '添加成功',
-            })
-            wx.navigateBack({
-              delta: 1
-            })
-          }
-        })
+        if (addresssStorage) {
+          addresssStorage.push(currentExpress)
+          wx.setStorage({
+            key: 'addresssInfoALL',
+            data: addresssStorage,
+            success: function() {
+              wx.showToast({
+                title: '添加成功',
+              })
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        } else {
+          wx.setStorage({
+            key: 'addresssInfoALL',
+            data: [currentExpress],
+            success: function() {
+              wx.showToast({
+                title: '添加成功',
+              })
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        }
       }
     }
   },

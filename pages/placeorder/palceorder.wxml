@@ -24,21 +24,19 @@
       <button bindtap='saveAddress'>保存收货信息</button>
     </view>
   </view>
-  <view class='addressInfos' wx:if="{{addressInfo}}">
-    <navigator url="/pages/delivery/delivery" hover-class="navigator-hover">
-      <view class='addressInfo_one'>
-        <view class='add_info_content'>
-          <view class='add_info_top'>
-            <image src='../resource/image/recive.png'></image>
-            <view class='add_info_text'>
-              <text>收件人:{{currentExpress.name}}</text>
-              <text class='text_two'>收货地址:{{currentExpress.province}}{{currentExpress.city}}{{currentExpress.area}}{{currentExpress.location}}</text>
-            </view>
+  <view class='addressInfos' bindtap='go_delivery' wx:if="{{addressInfo}}">
+    <view class='addressInfo_one'>
+      <view class='add_info_content'>
+        <view class='add_info_top'>
+          <image src='../resource/image/recive.png'></image>
+          <view class='add_info_text'>
+            <text>收件人:{{currentExpress.name}}</text>
+            <text class='text_two'>收货地址:{{currentExpress.province}}{{currentExpress.city}}{{currentExpress.area}}{{currentExpress.location}}</text>
           </view>
         </view>
       </view>
-      <image class='order-right-icon' src='../resource/image/icon_right_more.png'></image>
-    </navigator>
+    </view>
+    <image class='order-right-icon' src='../resource/image/icon_right_more.png'></image>
 
   </view>
   <view class='cart_product' wx:for="{{product}}" wx:key="{{index}}">

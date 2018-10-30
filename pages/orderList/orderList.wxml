@@ -8,4 +8,22 @@
   <view class="title-box" wx:if="{{currentOrder.orders.length==0}}">
     空空如也～
   </view>
+  <view wx:else class='orderList'>
+    <view wx:for="{{currentOrder}}" wx:key="{{index}}" class='order_sty'>
+      <view class='order_header'>
+        <text>快乐商店</text>
+        <text>{{item.state==1?'待支付':(item.state==0?'待发货':'已取消')}}</text>
+      </view>
+      <view class='order_id'>
+        <text>订单编号：{{item.orderID}}</text>
+      </view>
+      <view wx:for="{{item.content}}" wx:for-item="items" class='order_content'>
+        <image src='{{items.image}}'></image>
+        <view class='order_content_right'>
+          <view><text>{{items.title}}</text><text>{{items.sku.price}}</text></view>
+          <view><text>{{items.sku.param1}}{{items.sku.param2}}</text><text>x{{items.num}}</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

@@ -79,15 +79,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    console.log(this.data.id)
+    var orders = this.data.orders;
+    var ordersStorage = wx.getStorageSync('allOrder');
+    orders[this.data.id].orders = ordersStorage;
     this.updateCurrentOrder(this.data.id);
   },
   updateCurrentOrder:function(id){
     var currentOrder = this.data.currentOrder;
-    currentOrder = this.data.orders[id];
+    currentOrder = this.data.orders[id].orders;
     this.setData({
       currentOrder,
       id
     })
+    console.log(this.data.currentOrder)
   },
   /**
    * 生命周期函数--监听页面隐藏

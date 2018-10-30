@@ -1,4 +1,5 @@
 var utils = require("../../utils/util.js");
+var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 Page({
 
   /**
@@ -31,7 +32,8 @@ Page({
     }],
     index: [],
     show: false,
-    product:[]
+    product:[],
+    id:null,
   },
 
   /**
@@ -40,7 +42,7 @@ Page({
   onLoad: function(options) {
 
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -137,10 +139,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
+  
   onShow: function() {
     var that = this;
-    var addresssStorage = wx.getStorageSync('addresssInfo')
-    var addresssStorageALL = wx.getStorageSync('addresssInfoALL')
+    var addresssStorage = wx.getStorageSync('addresssInfo');
+    var addresssStorageALL = wx.getStorageSync('addresssInfoALL');
     if (addresssStorage && addresssStorageALL){
       that.setData({
         currentExpress: addresssStorage,
@@ -151,7 +154,6 @@ Page({
         wx.getStorage({
           key: 'addresssInfoALL',
           success: function (res) {
-            console.log(res)
             if (res.data.length > 0) {
               that.setData({
                 currentExpress: res.data[0],
@@ -175,7 +177,6 @@ Page({
     wx.getStorage({
       key: 'orderInfo',
       success: function(res) {
-        console.log(res)
         var total = 0;
         for(let i of res.data){
           total = total + Number(i.sku.price)*i.num
@@ -189,7 +190,9 @@ Page({
     
   },
   payment_btn:function(){
-    if (this.data.addressInfo == false) {
+    
+    var that = this;
+    if (that.data.addressInfo == false) {
       wx.showModal({
         title: '提示',
         content: '请输入地址信息！',
@@ -206,14 +209,67 @@ Page({
       confirmColor: '',
       success: function(res) {
         if (res.confirm) {
-          wx.showToast({
-            title: '支付成功',
-          })
+          var state = 0;
+          var orderID = Math.round(new Date());
+          var obligationStorage = wx.getStorageSync('orderInfo');
+          var allOrderStorage = wx.getStorageSync('allOrder');
+          var obligation = {};
+          obligation.content = obligationStorage;
+          obligation.orderID = orderID;
+          obligation.state = state;
+          if (allOrderStorage) {
+            allOrderStorage.push(obligation)
+            wx.setStorage({
+              key: 'allOrder',
+              data: allOrderStorage,
+              success: function () {
+                wx.showToast({
+                  title: '支付成功',
+                })
+              }
+            })
+          } else {
+            wx.setStorage({
+              key: 'allOrder',
+              data: [obligation],
+              success: function () {
+                wx.showToast({
+                  title: '支付成功',
+                })
+              }
+            })
+          }
         } else if (res.cancel) {
-          wx.showToast({
-            icon:'none',
-            title: '支付失败',
-          })
+          var state = 1;
+          var orderID = Math.round(new Date());
+          var obligationStorage = wx.getStorageSync('orderInfo');
+          var allOrderStorage = wx.getStorageSync('allOrder');
+          var obligation = {};
+          obligation.content = obligationStorage;
+          obligation.orderID = orderID;
+          obligation.state = state;
+          if (allOrderStorage){
+            allOrderStorage.push(obligation)
+            wx.setStorage({
+              key: 'allOrder',
+              data: allOrderStorage,
+              success:function(){
+                wx.showToast({
+                  title: '支付失败',
+                })
+              }
+            })
+          }else{
+            wx.setStorage({
+              key: 'allOrder',
+              data: [obligation],
+              success: function () {
+                wx.showToast({
+                  title: '支付失败',
+                })
+              }
+            })
+          }
         }
         
       },
@@ -221,18 +277,23 @@ Page({
       complete: function(res) {},
     })
   },
+  go_delivery:function(){
+    wx.navigateTo({
+      url: '/pages/delivery/delivery',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+   
   },
 
   /**

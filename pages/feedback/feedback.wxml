@@ -1,2 +1,22 @@
 <!--pages/feedback/feedback.wxml-->
-<text>pages/feedback/feedback.wxml</text>
+<view class='feedback'>
+  <view class='textarea'>
+    <textarea placeholder="如有意见，可以反馈给我~~" placeholder-style="color:#666666;"></textarea>
+  </view>
+  <view class='image_content'>
+    <view class='image_header'>
+      <text>添加图片</text>
+    </view>
+    <view class='content'>
+      <view class='image_list'>
+        <view class='image' wx:if="{{src.length>0}}" wx:for="{{src}}" wx:key="{{index}}">
+          <icon class='cancelicon' type='cancel' size='20' color="#FC911D" data-index="{{index}}" catchtap='cancelimg'></icon>
+          <image src="{{item}}" bindtap="previewImage" data-src='{{item}}'></image>
+        </view>
+        <view class='upload' bindtap='upload' wx:if="{{num<3}}">
+          <image src='../resource/image/feedback_add.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

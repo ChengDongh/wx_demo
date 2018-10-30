@@ -6,14 +6,20 @@ Page({
    */
   data: {
     addressList: [],
-    delBtnWidth: 120
+    delBtnWidth: 120,
+    id: null,
+    isBack: 'true'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    if (JSON.stringify(options) != "{}") {
+      this.setData({
+        isBack: options.isBack
+      })
+    }
   },
 
   /**
@@ -28,41 +34,92 @@ Page({
    */
   onShow: function() {
     var addressList = wx.getStorageSync('addresssInfoALL');
-    console.log(addressList)
     this.setData({
       addressList
     });
     this.initEleWidth();
+    if (this.data.id != null) {
+      wx.setStorage({
+        key: 'addresssInfo',
+        data: addressList[this.data.id],
+      })
+    }
   },
-
-  delItem:function(e){
+  edit: function(e) {
+    var id = e.currentTarget.dataset.index;
+    var address_one = wx.getStorageSync('addresssInfoALL')[id];
+    var address_two = wx.getStorageSync('addresssInfo');
+    if (address_one.name == address_two.name && address_one.mobile == address_two.mobile && address_one.province == address_two.province && address_one.area == address_two.area && address_one.city == address_two.city && address_one.location == address_two.location) {
+      this.setData({
+        id: id
+      })
+    }
+    wx.navigateTo({
+      url: '/pages/address/address?id=' + id + '',
+    })
+  },
+  selectTap: function(e) {
+    console.log(this.data.isBack)
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var address_choose = wx.getStorageSync('addresssInfoALL')[index];
+    if (that.data.isBack == 'true') {
+      console.log(11111)
+      wx.setStorage({
+        key: 'addresssInfo',
+        data: address_choose,
+        success: function(res) {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
+    }
+  },
+  delItem: function(e) {
     var addressList = this.data.addressList;
     var index = e.currentTarget.dataset.index;
-    addressList.splice(index,1)
+    var address_two = wx.getStorageSync('addresssInfo');
+    var address_one = wx.getStorageSync('addresssInfoALL')[index];
+    addressList.splice(index, 1);
     this.setData({
       addressList
     });
-    if (addressList.length<=0){
+    if (address_one.name == address_two.name && address_one.mobile == address_two.mobile && address_one.province == address_two.province && address_one.area == address_two.area && address_one.city == address_two.city && address_one.location == address_two.location) {
       wx.removeStorage({
-        key: 'addresssInfoALL',
+        key: 'addresssInfo',
         success: function(res) {
           wx.showToast({
             title: '删除成功',
           })
         },
       })
-    }else{
       wx.setStorage({
         key: 'addresssInfoALL',
         data: addressList,
-        success:function(){
-          wx.showToast({
-            title: '删除成功',
-          })
-        }
       })
+    } else {
+      if (addressList.length <= 0) {
+        wx.removeStorage({
+          key: 'addresssInfoALL',
+          success: function(res) {
+            wx.showToast({
+              title: '删除成功',
+            })
+          },
+        })
+      } else {
+        wx.setStorage({
+          key: 'addresssInfoALL',
+          data: addressList,
+          success: function() {
+            wx.showToast({
+              title: '删除成功',
+            })
+          }
+        })
+      }
     }
-    
   },
   //获取元素自适应后的实际宽度
   getEleWidth: function(w) {

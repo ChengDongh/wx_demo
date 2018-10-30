@@ -2,7 +2,7 @@
 <view class='delivery'>
   <view class='delivery_box' wx:for="{{addressList}}" wx:key="{{item}}" bindtap="selectTap" bindtouchstart="touchS" style="{{item.left}}" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
     <view class='list'>
-      <view class='list_header'>
+      <view class='list_header' catchtap='edit' data-index='{{index}}'>
         <image src='../resource/image/edit.png'></image>
       </view>
       <view class='list_content'>

@@ -27,3 +27,35 @@
   text-align: center;
   margin-top: 100rpx;
 }
+.order_sty{
+  padding:20rpx 0  15rpx 15rpx;
+  background: white;
+  margin-bottom: 15rpx;
+}
+.order_header{
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.order_header text{
+  color: #bbbbbb;
+}
+.order_id{
+  font-size: 26rpx;
+  color: #bbbbbb;
+  margin-bottom: 20rpx;
+}
+.order_header text:nth-of-type(2){
+  color: orange;
+  margin-right: 20rpx;
+}
+.order_content{
+  display: flex;
+}
+.order_content image{
+  width: 120rpx;
+  height: 120rpx;
+}
+.order_content_right{
+  font-size: 30rpx;
+}

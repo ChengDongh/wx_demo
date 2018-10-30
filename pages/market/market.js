@@ -38,6 +38,16 @@ Page({
       target_id: 2,
       pic: '../resource/image/mybanner.png'
     }],
+    banners_1: [{
+      target_id: 0,
+      pic: '../resource/image/mybanner.png'
+    }, {
+      target_id: 1,
+      pic: '../resource/image/makemoneyimg.png'
+    }, {
+      target_id: 2,
+      pic: '../resource/image/mybanner.png'
+    }],
     products: [{
       id: 0,
       title: '商品一',
@@ -105,14 +115,31 @@ Page({
     
   },
   hotSearch(e) {
-    console.log(e)
     let category_id = 0;
     let title = '';
     category_id = e.currentTarget.dataset.key.id;
     this.setData({
       category_id,
     })
-    // this.loadData();
+    this.loadData();
+  },
+  loadData:function(){
+    this.setData({
+      products:[],
+      banners:[]
+    });
+    wx.showLoading({
+      title: '加载中',
+    });
+    setTimeout(() => {
+      var products = this.data.products_1;
+      var banners = this.data.banners_1;
+      this.setData({
+        products,
+        banners
+      });
+      wx.hideLoading();
+    }, 2000)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
