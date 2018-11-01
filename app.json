@@ -1,13 +1,12 @@
 {
   "pages": [
-    "pages/orderList/orderList",
     "pages/market/market",
+    "pages/orderList/orderList",
     "pages/feedback/feedback",
     "pages/delivery/delivery",
     "pages/address/address",
     "pages/my/my",
     "pages/shop_cart/shop_cart",
-    
     "pages/product/product",
     "pages/placeorder/palceorder",
     "pages/authorize/authorize",

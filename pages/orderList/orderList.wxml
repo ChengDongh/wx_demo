@@ -5,13 +5,16 @@
       <text>{{item.title}}</text>
     </view>
   </view>
-  <view class="title-box" wx:if="{{currentOrder.orders.length==0}}">
+  <view class="title-box" wx:if="{{currentOrder.length==0}}">
     空空如也～
   </view>
   <view wx:else class='orderList'>
     <view wx:for="{{currentOrder}}" wx:key="{{index}}" class='order_sty'>
       <view class='order_header'>
-        <text>快乐商店</text>
+        <view style='display:inline-block'>
+          <image src='../resource/image/shop (2).png'></image>
+          <text class='order_header_text'>快乐商店</text>
+        </view>
         <text>{{item.state==1?'待支付':(item.state==0?'待发货':'已取消')}}</text>
       </view>
       <view class='order_id'>
@@ -20,9 +23,23 @@
       <view wx:for="{{item.content}}" wx:for-item="items" class='order_content'>
         <image src='{{items.image}}'></image>
         <view class='order_content_right'>
-          <view><text>{{items.title}}</text><text>{{items.sku.price}}</text></view>
-          <view><text>{{items.sku.param1}}{{items.sku.param2}}</text><text>x{{items.num}}</text></view>
+          <view class='order_title'>
+            <text>{{items.title}}</text>
+            <text>￥{{items.sku.price}}</text>
+          </view>
+          <view class='order_r_content'>
+            <text>{{items.sku.param1}}{{items.sku.param2}}</text>
+            <text>x{{items.num}}</text>
+          </view>
         </view>
+      </view>
+      <view class='h_text'>合计:
+        <text style='color:orange'>￥{{item.total}}</text>
+      </view>
+      <view class='order_btn'>
+        <button data-index='{{item.orderID}}' catchtap='go_back'>再来一单</button>
+        <button data-index='{{item.orderID}}' catchtap='cancelBtn' wx:if="{{item.state==1}}">取消订单</button>
+        <button data-index='{{item.orderID}}' catchtap='confirmBtn' class='s_btn' wx:if="{{item.state==1}}">确认付款</button>
       </view>
     </view>
   </view>

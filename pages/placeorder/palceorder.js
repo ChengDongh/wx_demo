@@ -209,6 +209,7 @@ Page({
       confirmColor: '',
       success: function(res) {
         if (res.confirm) {
+          var total = that.data.total;
           var state = 0;
           var orderID = Math.round(new Date());
           var obligationStorage = wx.getStorageSync('orderInfo');
@@ -217,6 +218,7 @@ Page({
           obligation.content = obligationStorage;
           obligation.orderID = orderID;
           obligation.state = state;
+          obligation.total = total;
           if (allOrderStorage) {
             allOrderStorage.push(obligation)
             wx.setStorage({
@@ -226,6 +228,11 @@ Page({
                 wx.showToast({
                   title: '支付成功',
                 })
+                setTimeout(() => {
+                  wx.navigateTo({
+                    url: '/pages/orderList/orderList',
+                  })
+                }, 1000)
               }
             })
           } else {
@@ -236,11 +243,17 @@ Page({
                 wx.showToast({
                   title: '支付成功',
                 })
+                setTimeout(()=>{
+                  wx.navigateTo({
+                    url: '/pages/orderList/orderList',
+                  })
+                },1000)
               }
             })
           }
         } else if (res.cancel) {
           var state = 1;
+          var total = that.data.total;
           var orderID = Math.round(new Date());
           var obligationStorage = wx.getStorageSync('orderInfo');
           var allOrderStorage = wx.getStorageSync('allOrder');
@@ -248,6 +261,7 @@ Page({
           obligation.content = obligationStorage;
           obligation.orderID = orderID;
           obligation.state = state;
+          obligation.total = total;
           if (allOrderStorage){
             allOrderStorage.push(obligation)
             wx.setStorage({
@@ -257,6 +271,11 @@ Page({
                 wx.showToast({
                   title: '支付失败',
                 })
+                setTimeout(() => {
+                  wx.navigateTo({
+                    url: '/pages/orderList/orderList',
+                  })
+                }, 1000)
               }
             })
           }else{
@@ -267,6 +286,11 @@ Page({
                 wx.showToast({
                   title: '支付失败',
                 })
+                setTimeout(() => {
+                  wx.navigateTo({
+                    url: '/pages/orderList/orderList',
+                  })
+                }, 1000)
               }
             })
           }

@@ -9,7 +9,7 @@
     </view>
   </view>
   <view class='content'>
-    <navigator url='/pages/orderList/orderList'>
+    <navigator url='/pages/orderList/orderList?isBack={{isBack}}'>
       <view class='my_list'>
         <view class='my_list_left'>
           <image class='my_list_img' src='../resource/image/myorder.png'></image>
