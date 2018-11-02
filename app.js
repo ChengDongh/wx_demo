@@ -29,7 +29,7 @@ App({
               }
             }
           })
-        }else{
+        }else{//没有授权 跳转到授权页面
           wx.reLaunch({
             url: '/pages/authorize/authorize',
           })

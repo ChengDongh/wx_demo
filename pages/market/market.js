@@ -114,6 +114,7 @@ Page({
   onLoad: function(options) {
     
   },
+  //头部导航条
   hotSearch(e) {
     let category_id = 0;
     let title = '';

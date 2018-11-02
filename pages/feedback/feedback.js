@@ -39,6 +39,7 @@ Page({
       }
     })
   },
+  //点击叉号删除图片
   cancelimg:function(e){
     var src = this.data.src;
     var index = e.currentTarget.dataset.index;
@@ -48,6 +49,7 @@ Page({
       num:src.length
     })
   },
+  //图片浏览
   previewImage:function(e){
     wx.previewImage({
       current:e.currentTarget.dataset.src,

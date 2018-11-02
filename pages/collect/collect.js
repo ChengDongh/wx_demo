@@ -104,7 +104,7 @@ Page({
       }
     }
   },
-
+  //删除按钮
   delItem:function(e){
     var collectList = this.data.collectList;
     var index = e.currentTarget.dataset.index

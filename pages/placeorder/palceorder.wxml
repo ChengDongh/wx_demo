@@ -65,11 +65,12 @@
         <text class='all_pic' style=''>￥{{total}}</text>
       </view>
     </view>
-    <view class='leave_word'>
+    <view class='leave_word' bindtap='choose_coupon'>
       <view class='favourable'>
         <text>优惠</text>
         <view>
-          <text class='choose'>未选择</text>
+          <text class='choose' wx:if="{{coupon==0}}">未选择</text>
+          <text class='choose' style='color:orange' wx:if="{{coupon!=0}}">￥{{coupon}}.00</text>
           <image class='choose-icon' src='../resource/image/icon_right_more.png'></image>
         </view>
       </view>
@@ -82,7 +83,8 @@
         </view>
         <view class='all_content'>
           <text>优惠</text>
-          <text class='all_content_text' style=''>无</text>
+          <text class='all_content_text' wx:if="{{coupon==0}}" style=''>无</text>
+          <text class='all_content_text' wx:if="{{coupon!=0}}" style='color:orange'>￥{{coupon}}.00</text>
         </view>
         <view class='all_content'>
           <text>运费</text>
@@ -95,7 +97,7 @@
   <view class='payment'>
     <view class='payment_pic'>
       <text>合计</text>
-      <text class='all_pic' style=''>￥{{total}}</text>
+      <text class='all_pic' style=''>￥{{total_a}}</text>
     </view>
     <button bindtap='payment_btn' class='payment_btn'>微信支付</button>
   </view>

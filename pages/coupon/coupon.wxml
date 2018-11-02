@@ -1,2 +1,27 @@
 <!--pages/coupon/coupon.wxml-->
-<text>pages/coupon/coupon.wxml</text>
+<view class='coupon'>
+  <view class='coupon_input'>
+    <input bindinput='couponVal' value='{{couponVal}}' placeholder='请输入优惠码'></input>
+    <button bindtap='exchange_btn'>兑换</button>
+  </view>
+  <view class='coupon_none' wx:if="{{coupon_m.length<=0}}">
+    <view class='none'>
+      <image mode='widthFix' src='../resource/image/coupon.png'></image>
+      <text>您还没有优惠券~~</text>
+    </view>
+  </view>
+  <view class='coupon_s' wx:else>
+    <view wx:for="{{coupon_m}}" wx:key="{{item}}" data-index='{{item.couponId}}' class='coupon_list' bindtap='choose_coupon'>
+      <view class='coupon_left'>
+        <text class='price'>￥{{item.coupon_pic}}.00</text>
+        <text class='title'>满￥{{item.satisfy_pic}}.00元可用</text>
+      </view>
+      <view class='coupon_right'>
+        <text>{{item.create_time}} - 永久</text>
+      </view>
+    </view>
+  </view>
+  <view class='coupon_bottom' bindtap='no_coupon'>
+    <text>不使用优惠券</text>
+  </view>
+</view>

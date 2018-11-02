@@ -37,7 +37,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (JSON.stringify(options)!= "{}"){
+    if (JSON.stringify(options)!= "{}"){//判断是否是从点击修改按钮跳转过来的
       var currentExpress = wx.getStorageSync('addresssInfoALL')[options.id];
       var id = options.id;
       this.setData({
@@ -60,6 +60,7 @@ Page({
   onShow: function() {
 
   },
+  //获取input输入值
   addinfor: function(e) {
     var currentExpress = this.data.currentExpress;
     switch (e.currentTarget.dataset.index) {
@@ -77,6 +78,7 @@ Page({
       currentExpress
     })
   },
+  //select改变时触发
   bindChange: function(e) {
     var value = e.detail.value
     var idx = this.data.index
@@ -94,12 +96,14 @@ Page({
       })
     }
   },
+  //select选择器的开关
   selectCity: function() {
     var show = this.data.show;
     this.setData({
       show: !show
     })
   },
+//保存下select选择器选择的值
   saveCity: function() {
     var index = this.data.index;
     var show = this.data.show;
@@ -118,6 +122,7 @@ Page({
       show: !show
     })
   },
+  //保存地址按钮
   saveAddress: function() {
     var message = '';
     if (this.data.currentExpress.name == undefined) {
@@ -137,7 +142,7 @@ Page({
     } else {
       var currentExpress = this.data.currentExpress;
       var addresssStorage = wx.getStorageSync('addresssInfoALL')
-      if (this.data.id != null) {
+      if (this.data.id != null) {//通过是否是修改按钮跳转过来的 来判断保存之后的提示是修改成功或者是添加成功
         if (addresssStorage){
           addresssStorage[this.data.id] = currentExpress;
           wx.setStorage({

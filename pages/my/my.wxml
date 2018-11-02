@@ -27,7 +27,7 @@
         <image class='my_list_right' src='../resource/image/icon_right_more.png'></image>
       </view>
     </navigator>
-    <navigator url='/pages/coupon/coupon'>
+    <navigator url='/pages/coupon/coupon?isBack={{isBack}}'>
       <view class='my_list'>
         <view class='my_list_left'>
           <image class='my_list_img' src='../resource/image/mycoupon.png'></image>

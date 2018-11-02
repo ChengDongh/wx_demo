@@ -44,7 +44,7 @@ Page({
     ],
     currentOrder: null,
     id: null,
-    isBack: 'true'
+    isBack: 'true',
   },
 
   /**
@@ -60,7 +60,7 @@ Page({
       id: 0,
     })
   },
-
+  //头部的tabbar
   selectBar: function(e) {
     var orders = this.data.orders;
     for (let value of orders) {
@@ -75,6 +75,7 @@ Page({
     })
     this.updateCurrentOrder(e.currentTarget.dataset.id);
   },
+  //再来一单
   go_back: function(e) {
     var that = this;
     var orderID = e.currentTarget.dataset.index;
@@ -114,14 +115,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    var orders = this.data.orders;
-    var ordersStorage = wx.getStorageSync('allOrder');
+  onShow: function() {//默认首次加载的是全部的订单
 
-    function sortprice(a, b) {
-      return b.orderID - a.orderID
-    };
-    ordersStorage.sort(sortprice);
+    var orders = this.data.orders;
+    var ordersStorage = wx.getStorageSync('allOrder');//获取所以的订单
+    console.log(ordersStorage)
+    if (ordersStorage.length>0){
+      function sortprice(a, b) {
+        return b.orderID - a.orderID
+      };
+      ordersStorage.sort(sortprice);
+    }
     for (let value of ordersStorage) {
       for (let val of orders) {
         if (val.orderState == value.state) {
@@ -135,7 +139,7 @@ Page({
     })
     this.updateCurrentOrder(this.data.id);
   },
-  updateCurrentOrder: function(id) {
+  updateCurrentOrder: function(id) {//tabbar切换时加载的数据
     this.setData({
       currentOrder: null,
       id: null
@@ -153,12 +157,12 @@ Page({
       })
     }, 1000)
   },
+  //取消订单
   cancelBtn: function(e) {
     var that = this;
     var index = e.currentTarget.dataset.index;
     var currentOrder = that.data.currentOrder;
     var ordersStorage = wx.getStorageSync('allOrder');
-
     function sortprice(a, b) {
       return b.orderID - a.orderID
     };
@@ -175,7 +179,7 @@ Page({
           wx.showLoading({
             title: '加载中...',
           })
-          if (that.data.id == 0) {
+          if (that.data.id == 0) {//如果是在全部的tabbar界面 改变订单的状态
             for (let i in currentOrder) {
               if (currentOrder[i].orderID == index) {
                 currentOrder[i].state = 2;
@@ -186,7 +190,7 @@ Page({
                 }
               }
             }
-          } else {
+          } else {//如果是在待支付的tabbar界面 改变订单的状态并将其删除
             for (let i in currentOrder) {
               if (currentOrder[i].orderID == index) {
                 currentOrder.splice(i, 1);
@@ -198,7 +202,7 @@ Page({
               }
             }
           }
-          wx.setStorage({
+          wx.setStorage({//操作之后 更新所以订单的状态值（缓存）
             key: 'allOrder',
             data: ordersStorage,
             success: function() {
@@ -215,11 +219,11 @@ Page({
       }
     })
   },
-  cancel_bt: function() {
+  cancel_bt: function () {//获取所以订单的最新缓存 改变数据
     var orders = this.data.orders;
     var ordersStorage = wx.getStorageSync('allOrder');
 
-    function sortprice(a, b) {
+    function sortprice(a,b) {
       return b.orderID - a.orderID
     };
     ordersStorage.sort(sortprice);
@@ -238,12 +242,13 @@ Page({
       orders
     })
   },
+  //确定支付
   confirmBtn: function(e) {
     var that = this;
     var index = e.currentTarget.dataset.index;
     var currentOrder = that.data.currentOrder;
     var ordersStorage = wx.getStorageSync('allOrder');
-
+    
     function sortprice(a, b) {
       return b.orderID - a.orderID
     };
@@ -259,7 +264,7 @@ Page({
           wx.showLoading({
             title: '加载中...',
           })
-          if (that.data.id == 0) {
+          if (that.data.id == 0) {//如果是在全部的tabbar界面 改变订单的状态
             for (let i in currentOrder) {
               if (currentOrder[i].orderID == index) {
                 currentOrder[i].state = 0;
@@ -271,7 +276,7 @@ Page({
               }
             }
           } else {
-            for (let i in currentOrder) {
+            for (let i in currentOrder) {//如果是在待支付的tabbar界面 改变订单的状态并将其删除
               if (currentOrder[i].orderID == index) {
                 currentOrder.splice(i, 1)
                 for (let val of ordersStorage) {

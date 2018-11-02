@@ -38,18 +38,19 @@ Page({
       addressList
     });
     this.initEleWidth();
-    if (this.data.id != null) {
+    if (this.data.id != null) {//记录所修改地址的id，如果是结算页面的id 那就更改结算页面的地址信息
       wx.setStorage({
         key: 'addresssInfo',
         data: addressList[this.data.id],
       })
     }
   },
+  //修改地址
   edit: function(e) {
     var id = e.currentTarget.dataset.index;
     var address_one = wx.getStorageSync('addresssInfoALL')[id];
     var address_two = wx.getStorageSync('addresssInfo');
-    if (address_one.name == address_two.name && address_one.mobile == address_two.mobile && address_one.province == address_two.province && address_one.area == address_two.area && address_one.city == address_two.city && address_one.location == address_two.location) {
+    if (address_one.name == address_two.name && address_one.mobile == address_two.mobile && address_one.province == address_two.province && address_one.area == address_two.area && address_one.city == address_two.city && address_one.location == address_two.location) {//记录所修改地址的id 用来判断是否是结算页面的地址
       this.setData({
         id: id
       })
@@ -58,6 +59,7 @@ Page({
       url: '/pages/address/address?id=' + id + '',
     })
   },
+  //选择结算页面的地址
   selectTap: function(e) {
     console.log(this.data.isBack)
     var that = this;
@@ -76,16 +78,17 @@ Page({
       })
     }
   },
+  //删除地址
   delItem: function(e) {
     var addressList = this.data.addressList;
     var index = e.currentTarget.dataset.index;
-    var address_two = wx.getStorageSync('addresssInfo');
+    var address_two = wx.getStorageSync('addresssInfo');//获取结算页面的地址信息（无法通过后台设置id 就获取地址信息 从而进行进一步的对比 判断）
     var address_one = wx.getStorageSync('addresssInfoALL')[index];
     addressList.splice(index, 1);
     this.setData({
       addressList
     });
-    if (address_one.name == address_two.name && address_one.mobile == address_two.mobile && address_one.province == address_two.province && address_one.area == address_two.area && address_one.city == address_two.city && address_one.location == address_two.location) {
+    if (address_one.name == address_two.name && address_one.mobile == address_two.mobile && address_one.province == address_two.province && address_one.area == address_two.area && address_one.city == address_two.city && address_one.location == address_two.location) {//判断是否删除的是结算页面的地址
       wx.removeStorage({
         key: 'addresssInfo',
         success: function(res) {
