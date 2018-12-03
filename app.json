@@ -1,10 +1,10 @@
 {
   "pages": [
-    
     "pages/market/market",
     "pages/coupon/coupon",
     "pages/orderList/orderList",
     "pages/feedback/feedback",
+    "pages/feedbacks/feedbacks",
     "pages/delivery/delivery",
     "pages/address/address",
     "pages/my/my",

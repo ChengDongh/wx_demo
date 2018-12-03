@@ -43,7 +43,7 @@ Page({
       }
     ],
     currentOrder: null,
-    id: null,
+    id: null,             
     isBack: 'true',
   },
 
@@ -60,7 +60,7 @@ Page({
       id: 0,
     })
   },
-  //头部的tabbar
+  //头部的导航条
   selectBar: function(e) {
     var orders = this.data.orders;
     for (let value of orders) {
@@ -244,7 +244,7 @@ Page({
   },
   //确定支付
   confirmBtn: function(e) {
-    var that = this;
+    var that = this;  
     var index = e.currentTarget.dataset.index;
     var currentOrder = that.data.currentOrder;
     var ordersStorage = wx.getStorageSync('allOrder');
